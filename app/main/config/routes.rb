@@ -1,5 +1,6 @@
 # See https://github.com/voltrb/volt#routes for more info on routes
-
+get "/teams/{{_index}}", _action: 'teams'
+get '/teams', _action: 'teams'
 get '/about', _action: 'about'
 
 # Routes for login and signup, provided by user-templates component gem

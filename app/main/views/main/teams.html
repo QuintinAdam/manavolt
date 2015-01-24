@@ -1,0 +1,35 @@
+<:Title>
+  Teams
+
+<:Body>
+  <h1>Teams index page</h1>
+
+  <p>Put a list of teams here... and create new teams.</p>
+
+       <table class="table team-table">
+        {{ _teams.each do |team| }}
+          <tr class="{{ if params._index.or(0).to_i == index }}selected{{ end }}"
+            e-click="params._index = index">
+            <td><input type="checkbox" checked="{{ team._complete }}" /></td>
+            <td>{{ team._name }}</td>
+            <td><button e-click="remove_team(team)">X</button></td>
+          </tr>
+        {{ end }}
+<!--         {{ _teams.each do |team| }}
+          <tr
+            class="{{ if params._index.or(0).to_i == index }}selected{{ end }}"
+            e-click="params._index = index">
+            <td><input type="checkbox" checked="{{ team._complete }}" /></td>
+            <td class="{{ if team._complete }}complete{{ end }}">{{ team._name }}</td>
+            <td><button e-click="self._todos.delete_at(index)">X</button></td>
+          </tr>
+        {{ end }} -->
+      </table>
+
+      <form e-submit="add_team" role="form">
+        <div class="form-group">
+           <label>Add A Team:</label>
+           <input class="form-control" type="text" value="{{ page._new_team._name }}" />
+        </div>
+      </form>
+    </div>

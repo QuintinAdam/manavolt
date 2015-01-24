@@ -1,11 +1,32 @@
 # By default Volt generates this controller for your Main component
 class MainController < Volt::ModelController
-  def index
-    # Add code for when the index view is loaded
+  ####teams
+
+  # def index
+  #   # Add code for when the index view is loaded
+  # end
+
+  def teams
+    self.model = :store
+  end
+
+  def add_team
+    self._teams << page._new_team
+    page._new_team = {}
+  end
+
+  def remove_team(team)
+    _teams.delete(team)
   end
 
   def about
     # Add code for when the about view is loaded
+  end
+
+  def options
+    vals = page._opts.to_s.or('').split(/,/)
+
+    return vals
   end
 
   private
