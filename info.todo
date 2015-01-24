@@ -1,0 +1,87 @@
+ManaVolt:
+  Overview:
+    -This app is for team/project management. Get stuff done while having fun.
+    -users will sign up for a team.
+    -on the team page a user will see 3 tasks sections
+    -first one is for repeatable good/bad actions
+    ex: testing code before pushing = good. pushed untested code to production and crashing the application = bad.
+    -the second is for daily actions(if actions don't get completed for that day you will lose health)
+    ex: checking new relic for errors or something
+    -the third is for todo tasks something that only has to be done once
+    -for doing good things the team will gain xp and gold
+    -for doing bad things the team will lose hp
+    -later on it would be good for only project/team leader could edit tasks
+
+    users belong to teams
+    a team has a members(maybe a owner as well)
+    teams have tasks that can be created by members
+    3 different types of tasks: repeatable, dailies and to-do's
+    rewards could be bought with the teams gold
+
+  Users:
+    ☐ or username
+    ☐ password
+    ☐ belongs to team
+    ☐ (could have tasks assigned to them and tasks completed)
+
+  Teams:
+    ☐ name
+    ☐ level
+    ☐ xp
+    ☐ hp
+    ☐ mana
+    ☐ gold
+    ☐ teams could have this stuff or it could be the members...
+    ☐ has many users
+    ☐ has many tags
+    ☐ could have one owner
+
+  Tasks:
+    -tasks are split into 3 different categories all belong to a team
+    shared attributes:
+      ☐ name
+      ☐ description
+      ☐ difficulty(easy, medium, hard)
+      ☐ could have tags
+      ☐ task type
+    repeatable action/offense:
+      ☐ positive active /negative offense
+      ☐ could have tags
+    dailies:
+      ☐ repeat on day
+      ☐ add checklist (could be a new model that belongs to a task)
+    todo's:
+      ☐ due date
+      ☐ add checklist(could be a new model that belongs to a task)
+  rewards:
+    name:
+    ☐ value
+    ☐ description
+    ☐ could have tags as well
+Pages/actions:
+  home:
+    ☐ about because why not...
+    ☐ contact form although i don't see a clear way to send mail
+  users:
+    ☐ login
+    ☐ signup
+    ☐ logout
+    ☐ profile page
+  team:
+    ☐ new team
+    team show(main page):
+     ☐ create tags
+     ☐ edit tags
+     ☐ delete tags
+     ☐ show hp
+     ☐ show xp
+     ☐ show mana
+     ☐ show level
+      tasks:
+        ☐ add/edit/remove tasks from each of the 3 categories
+        ☐ changes the attributes from the different categories
+        ☐ add tags to the tasks
+      rewards:
+        ☐ add/edit/delete rewards
+
+
