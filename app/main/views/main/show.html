@@ -2,26 +2,23 @@
   Teams
 
 <:Body>
-  <h1>Teams index page</h1>
+  <h1>Teams {{ _name }} page</h1>
 
-  <p>Put a list of teams here... and create new teams.</p>
+  <p>Put a list of task here that belong to a team... and create new tasks.</p>
+  <div>
+  <p>{{_tasks[0]}}</p>
+    <table class="table tasks-table">
+      {{ _tasks.each do |task| }}
+        <tr>
+          <td>{{ task._name }}</td>
+        </tr>
+      {{ end }}
+    </table>
 
-       <table class="table team-table">
-        {{ _teams.each do |team| }}
-          <tr class="{{ if params._index.or(0).to_i == index }}selected{{ end }}"
-            e-click="params._index = index">
-            <td><input type="checkbox" checked="{{ team._complete }}" /></td>
-            <td><a href="/teams/{{ team._id }}">{{ team._name }}</a></td>
-            <td><button e-click="remove_team(team)">X</button></td>
-          </tr>
-        {{ end }}
-
-      </table>
-
-      <form e-submit="add_team" role="form">
-        <div class="form-group">
-           <label>Add A Team:</label>
-           <input class="form-control" type="text" value="{{ page._new_team._name }}" />
-        </div>
-      </form>
-    </div>
+    <form e-submit="add_task" role="form">
+      <div class="form-group">
+         <label>Add A Task:</label>
+         <input class="form-control" type="text" value="{{ page._new_task_name }}" >
+      </div>
+    </form>
+  </div>

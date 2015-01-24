@@ -25,6 +25,21 @@ class MainController < Volt::ModelController
     _teams.delete(team)
   end
 
+  ###tasks
+
+  def new_task
+    self.model = results[0]
+  end
+
+  def add_task
+    # store._teams.find(_id: params._id).then do |results|
+    #   self.model = results[0]
+    # end
+    self._tasks << {name: page._new_task_name}
+    self.model.buffer.save!
+    page._new_task_name = ''
+  end
+
   def about
     # Add code for when the about view is loaded
   end
