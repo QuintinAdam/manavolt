@@ -7,14 +7,15 @@
   <p>Put a list of teams here... and create new teams.</p>
 
        <table class="table team-table">
-<!--         {{ _teams.each do |team| }}
+        {{ _teams.each do |team| }}
           <tr class="{{ if params._index.or(0).to_i == index }}selected{{ end }}"
             e-click="params._index = index">
             <td><input type="checkbox" checked="{{ team._complete }}" /></td>
             <td><a href="/teams/{{ team._id }}">{{ team._name }}</a></td>
             <td><button e-click="remove_team(team)">X</button></td>
           </tr>
-        {{ end }} -->
+        {{ end }}
+
       </table>
 
       <form e-submit="add_team" role="form">

@@ -10,6 +10,12 @@ class MainController < Volt::ModelController
     self.model = :store
   end
 
+  def show
+    store._teams.find(_id: params._id).then do |results|
+      self.model = results[0]
+    end
+  end
+
   def add_team
     self._teams << page._new_team
     page._new_team = {}

@@ -30,6 +30,6 @@ Volt.configure do |config|
   # so be sure no private data ends up under public
 
   # Use username instead of email as the login
-  config.public.auth.use_username = true
+  # config.public.auth.use_username = true
 
 end

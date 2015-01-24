@@ -1,5 +1,5 @@
 # See https://github.com/voltrb/volt#routes for more info on routes
-get "/teams/{{_index}}", _action: 'teams'
+get "/teams/{{__id}}", _action: 'show'
 get '/teams', _action: 'teams'
 get '/about', _action: 'about'
 
