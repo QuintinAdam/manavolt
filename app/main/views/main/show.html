@@ -3,21 +3,63 @@
 
 <:Body>
   <h1>Teams {{ _name }} page</h1>
-
+  {{ _tasks.select{|x| x._tasks_type == 'repeatable'} }}
   <p>Put a list of task here that belong to a team... and create new tasks.</p>
   <div>
-    <table class="table tasks-table">
-      {{ _tasks.each do |task| }}
-        <tr>
-          <td>{{ task._name }}</td>
-        </tr>
-      {{ end }}
-    </table>
+    <div class='col-sm-4'>
+      <h3>Repeatable</h3>
+      <table class="table tasks-table">
+        {{ find_repeatable.each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td>{{ task._task_type }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
+        {{ end }}
+      </table>
 
-    <form e-submit="add_task" role="form">
-      <div class="form-group">
-         <label>Add A Task:</label>
-         <input class="form-control" type="text" value="{{ page._new_task_name }}" >
-      </div>
-    </form>
+      <form e-submit="add_task_repeatable" role="form">
+        <div class="form-group">
+           <label>Add A Task:</label>
+           <input class="form-control" type="text" value="{{ page._new_task_repeatable }}" >
+        </div>
+      </form>
+    </div>
+    <div class='col-sm-4'>
+      <h3>Daily</h3>
+      <table class="table tasks-table">
+        {{ _tasks.each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
+        {{ end }}
+      </table>
+
+      <form e-submit="add_task_daily" role="form">
+        <div class="form-group">
+           <label>Add A Task:</label>
+           <input class="form-control" type="text" value="{{ page._new_task_daily }}" >
+        </div>
+      </form>
+    </div>
+    <div class='col-sm-4'>
+      <h3>To-do's</h3>
+      <table class="table tasks-table">
+        {{ _tasks.each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
+        {{ end }}
+      </table>
+
+      <form e-submit="add_task_todo" role="form">
+        <div class="form-group">
+           <label>Add A Task:</label>
+           <input class="form-control" type="text" value="{{ page._new_task_todo }}" >
+        </div>
+      </form>
+    </div>
   </div>
+

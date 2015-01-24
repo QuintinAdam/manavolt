@@ -16,6 +16,12 @@ class MainController < Volt::ModelController
     end
   end
 
+  def find_repeatable
+    # _tasks.find(tasks_type: 'repeatable')
+    self._tasks.select{|x| x._tasks_type == 'repeatable'}
+    # [{_name:}]
+  end
+
   def add_team
     self._teams << page._new_team
     page._new_team = {}
@@ -27,10 +33,26 @@ class MainController < Volt::ModelController
 
   ###tasks
 
-  def add_task
-    self._tasks << {name: page._new_task_name}
+  def add_task_repeatable
+    self._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
     self.model.buffer.save!
-    page._new_task_name = ''
+    page._new_task_repeatable = ''
+  end
+
+  def add_task_daily
+    self._tasks << {name: page._new_task_daily, task_type: "daily"}
+    self.model.buffer.save!
+    page._new_task_daily = ''
+  end
+
+  def add_task_todo
+    self._tasks << {name: page._new_task_todo, task_type: "todo"}
+    self.model.buffer.save!
+    page._new_task_todo = ''
+  end
+
+  def remove_task(task)
+    _tasks.delete(task)
   end
 
   def about
