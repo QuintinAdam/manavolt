@@ -134,7 +134,6 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     volt-bootstrap (0.0.8)
-    volt-bootstrap-jumbotron-theme (0.0.3)
     volt-fields (0.0.12)
     volt-sockjs (0.3.4.4)
       faye-websocket (~> 0.7.1)
@@ -160,5 +159,4 @@ DEPENDENCIES
   thin (~> 1.6.0)
   volt!
   volt-bootstrap
-  volt-bootstrap-jumbotron-theme
   volt-user-templates

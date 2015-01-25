@@ -9,14 +9,12 @@
     <div class='col-sm-4'>
       <h3>Repeatable</h3>
       <table class="table tasks-table">
-        {{ _tasks.each do |task| }}
-          {{if task._task_type == "repeatable"}}
-            <tr>
-              <td>{{ task._name }}</td>
-              <td>{{ task._task_type }}</td>
-              <td><button e-click="remove_task(task)">X</button></td>
-            </tr>
-          {{end}}
+        {{ model._tasks.find({ task_type: 'repeatable'}).each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td>{{ task._task_type }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
         {{ end }}
       </table>
 
@@ -27,17 +25,16 @@
         </div>
       </form>
     </div>
+
     <div class='col-sm-4'>
       <h3>Daily</h3>
       <table class="table tasks-table">
-        {{ _tasks.each do |task| }}
-          {{if task._task_type == "daily"}}
-            <tr>
-              <td>{{ task._name }}</td>
-              <td>{{ task._task_type }}</td>
-              <td><button e-click="remove_task(task)">X</button></td>
-            </tr>
-          {{end}}
+        {{ model._tasks.find({ task_type: 'daily'}).each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td>{{ task._task_type }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
         {{ end }}
       </table>
 
@@ -48,17 +45,16 @@
         </div>
       </form>
     </div>
+
     <div class='col-sm-4'>
       <h3>To-do's</h3>
       <table class="table tasks-table">
-        {{ _tasks.each do |task| }}
-          {{if task._task_type == "todo"}}
-            <tr>
-              <td>{{ task._name }}</td>
-              <td>{{ task._task_type }}</td>
-              <td><button e-click="remove_task(task)">X</button></td>
-            </tr>
-          {{end}}
+        {{ model._tasks.find({ task_type: 'todo'}).each do |task| }}
+          <tr>
+            <td>{{ task._name }}</td>
+            <td>{{ task._task_type }}</td>
+            <td><button e-click="remove_task(task)">X</button></td>
+          </tr>
         {{ end }}
       </table>
 
@@ -68,6 +64,8 @@
            <input class="form-control" type="text" value="{{ page._new_task_todo }}" >
         </div>
       </form>
+
+
     </div>
   </div>
 
