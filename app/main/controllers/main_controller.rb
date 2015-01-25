@@ -16,11 +16,11 @@ class MainController < Volt::ModelController
     end
   end
 
-  def find_repeatable
-    # _tasks.find(tasks_type: 'repeatable')
-    self._tasks.select{|x| x._tasks_type == 'repeatable'}
-    # [{_name:}]
-  end
+  # def find_repeatable
+  #   # _tasks.find(tasks_type: 'repeatable')
+  #   self._tasks.select{|x| x._tasks_type == 'repeatable'}
+  #   # [{_name:}]
+  # end
 
   def add_team
     self._teams << page._new_team

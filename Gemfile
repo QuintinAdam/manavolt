@@ -13,7 +13,7 @@ gem 'volt-bootstrap'
 # gem 'volt-semantic-ui', github: 'QuintinAdam/volt-semantic-ui', branch: 'master'
 
 # Simple theme for bootstrap, remove to theme yourself.
-gem 'volt-bootstrap-jumbotron-theme'
+# gem 'volt-bootstrap-jumbotron-theme'
 
 # User templates for login, signup, and logout menu.
 gem 'volt-user-templates'

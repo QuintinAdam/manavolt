@@ -3,18 +3,20 @@
 
 <:Body>
   <h1>Teams {{ _name }} page</h1>
-  {{ _tasks.select{|x| x._tasks_type == 'repeatable'} }}
+  <!-- {{ _tasks.select{|x| x._tasks_type == 'repeatable'} }} -->
   <p>Put a list of task here that belong to a team... and create new tasks.</p>
-  <div>
+  <div class="row">
     <div class='col-sm-4'>
       <h3>Repeatable</h3>
       <table class="table tasks-table">
-        {{ find_repeatable.each do |task| }}
-          <tr>
-            <td>{{ task._name }}</td>
-            <td>{{ task._task_type }}</td>
-            <td><button e-click="remove_task(task)">X</button></td>
-          </tr>
+        {{ _tasks.each do |task| }}
+          {{if task._task_type == "repeatable"}}
+            <tr>
+              <td>{{ task._name }}</td>
+              <td>{{ task._task_type }}</td>
+              <td><button e-click="remove_task(task)">X</button></td>
+            </tr>
+          {{end}}
         {{ end }}
       </table>
 
@@ -29,10 +31,13 @@
       <h3>Daily</h3>
       <table class="table tasks-table">
         {{ _tasks.each do |task| }}
-          <tr>
-            <td>{{ task._name }}</td>
-            <td><button e-click="remove_task(task)">X</button></td>
-          </tr>
+          {{if task._task_type == "daily"}}
+            <tr>
+              <td>{{ task._name }}</td>
+              <td>{{ task._task_type }}</td>
+              <td><button e-click="remove_task(task)">X</button></td>
+            </tr>
+          {{end}}
         {{ end }}
       </table>
 
@@ -47,10 +52,13 @@
       <h3>To-do's</h3>
       <table class="table tasks-table">
         {{ _tasks.each do |task| }}
-          <tr>
-            <td>{{ task._name }}</td>
-            <td><button e-click="remove_task(task)">X</button></td>
-          </tr>
+          {{if task._task_type == "todo"}}
+            <tr>
+              <td>{{ task._name }}</td>
+              <td>{{ task._task_type }}</td>
+              <td><button e-click="remove_task(task)">X</button></td>
+            </tr>
+          {{end}}
         {{ end }}
       </table>
 
