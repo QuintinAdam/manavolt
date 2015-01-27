@@ -2,17 +2,19 @@
   Teams
 
 <:Body>
-  <h1>Teams {{ _name }} page</h1>
+  {{ if loaded? }}
+  <h1>{{self.model._tasks.size}} Tasks for Team {{ _name }}</h1>
   <p>Put a list of task here that belong to a team... and create new tasks.</p>
+ <!--  <h3>debugger</h3>
+  <h3>current model</h3>
   {{ model.inspect }}
-  {{ page._new_task_repeatable = 'hello'}}
+  <h3>page._new_task_repeatable</h3>
   <p>{{ page._new_task_repeatable }}</p>
-  <p>{{ {name: page._new_task_repeatable, task_type: "repeatable"} }}</p>
-  <p>_task</p>
+  <h3>_task</h3>
   <p>{{ _tasks }}</p>
-  <p>self._task is the same</p>
+  <h3>self._task is the same</h3>
   <p>{{ self._tasks }}</p>
-  <p>model._task is the same</p>
+  <h3>model._task is the same</h3>
   <p>{{ model._tasks }}</p>
   <h3>self.model._task is the same</h3>
   <p>{{ self.model._tasks }}</p>
@@ -22,8 +24,8 @@
   <p>{{ model._tasks.buffer.inspect }}</p>
   <h3>model._tasks.buffer.size will return 0 and is stupid but maybe is the size of teh current buffer?</h3>
   <p>{{ model._tasks.buffer.size }}</p>
-  <h1>model._tasks.size will load everything </h1>
-  <p>{{ model._tasks.size }}</p>
+  <h1>model._tasks.size will load everything or _tasks.size </h1>
+  <p>{{ _tasks.size }}</p> -->
 
   <div class="row">
     <div class='lists col-sm-12 col-md-6 col-lg-4'>
@@ -35,37 +37,7 @@
           </div>
         </form>
         <ul class='task-list repeatable-list'>
-          {{ model._tasks.find({ task_type: 'repeatable'}).each do |task| }}
-            <li class='task-item'>
-              <div class='task-options'>
-                <!-- <span e-click="remove_task(task)" class='glyphicon glyphicon-remove'></span> -->
-              </div>
-              <div class='task-text'>
-                {{ task._name }}
-              </div>
-            </li>
-          {{ end }}
-        </ul>
-        {{if model._tasks.find({ task_type: 'repeatable'}).size >= 10 }}
-          <form e-submit="add_task_repeatable" role="form">
-            <div class="form-group">
-               <input class="form-control" type="text" value="{{ page._new_task_repeatable }}" placeholder="New Repeatable Task" >
-            </div>
-          </form>
-        {{ end }}
-      </div>
-    </div>
-
-<!--     <div class='lists col-sm-12 col-md-6 col-lg-4'>
-      <div class="task-col daily" >
-        <h2>Daily</h2>
-        <form e-submit="add_task_daily" role="form">
-          <div class="form-group">
-             <input class="form-control" type="text" value="{{ page._new_task_daily }}" placeholder="New Daily Task" >
-          </div>
-        </form>
-        <ul class='task-list daily-list'>
-          {{ model._tasks.find({ task_type: 'daily'}).each do |task| }}
+          {{ repeatable_tasks.each do |task| }}
             <li class='task-item'>
               <div class='task-options'>
                 <span e-click="remove_task(task)" class='glyphicon glyphicon-remove'></span>
@@ -76,7 +48,37 @@
             </li>
           {{ end }}
         </ul>
-        {{if model._tasks.find({ task_type: 'daily'}).size >= 10 }}
+        {{if repeatable_tasks.size >= 10 }}
+          <form e-submit="add_task_repeatable" role="form">
+            <div class="form-group">
+               <input class="form-control" type="text" value="{{ page._new_task_repeatable }}" placeholder="New Repeatable Task" >
+            </div>
+          </form>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class='lists col-sm-12 col-md-6 col-lg-4'>
+      <div class="task-col daily" >
+        <h2>Daily</h2>
+        <form e-submit="add_task_daily" role="form">
+          <div class="form-group">
+             <input class="form-control" type="text" value="{{ page._new_task_daily }}" placeholder="New Daily Task" >
+          </div>
+        </form>
+        <ul class='task-list daily-list'>
+          {{ daily_tasks.each do |task| }}
+            <li class='task-item'>
+              <div class='task-options'>
+                <span e-click="remove_task(task)" class='glyphicon glyphicon-remove'></span>
+              </div>
+              <div class='task-text'>
+                {{ task._name }}
+              </div>
+            </li>
+          {{ end }}
+        </ul>
+        {{if daily_tasks.size >= 10 }}
           <form e-submit="add_task_daily" role="form">
             <div class="form-group">
                <input class="form-control" type="text" value="{{ page._new_task_daily }}" placeholder="New Daily Task" >
@@ -95,7 +97,7 @@
           </div>
         </form>
         <ul class='task-list todo-list'>
-          {{ model._tasks.find({ task_type: 'todo'}).each do |task| }}
+          {{ todo_tasks.each do |task| }}
             <li class='task-item'>
               <div class='task-options'>
                 <span e-click="remove_task(task)" class='glyphicon glyphicon-remove'></span>
@@ -106,7 +108,7 @@
             </li>
           {{ end }}
         </ul>
-        {{if model._tasks.find({ task_type: 'todo'}).size >= 10 }}
+        {{if todo_tasks.size >= 10 }}
           <form e-submit="add_task_todo" role="form">
             <div class="form-group">
                <input class="form-control" type="text" value="{{ page._new_task_todo }}" placeholder="New Todo Task" >
@@ -114,7 +116,7 @@
           </form>
         {{ end }}
       </div>
-    </div> -->
+    </div>
   </div>
-
+  {{ end}}
 

@@ -10,49 +10,64 @@ class MainController < Volt::ModelController
     self.model = :store
   end
 
-  def show
-    store._teams.find(_id: params._id).then do |results|
-      #self is important
-      self.model = results[0]
-      # self.model._tasks.size
-    end
-    # page._new_task_repeatable = ''
-    # page._new_task_daily = ''
-    # page._new_task_todo = ''
-  end
-
   def add_team
     self._teams << page._new_team
     page._new_team = {}
   end
 
-  # def remove_team(team)
-  #   _teams.delete(team)
-  # end
+  def remove_team(team)
+    _teams.delete(team)
+  end
 
+  def show
+    store._teams.find(_id: params._id).then do |results|
+      #self is important
+      self.model = results[0]
+    end
+    # page._new_task_repeatable = ''
+    # page._new_task_daily = ''
+    # page._new_task_todo = ''
+  end
   ###tasks
 
+  def repeatable_tasks
+    self.model._tasks.find({ task_type: 'repeatable'})
+  end
+
   def add_task_repeatable
-    _tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
-    self.model.buffer.save!
+    buffy = self.model.buffer
+    buffy._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
+    buffy.save!
     page._new_task_repeatable = ''
   end
 
-  # def add_task_daily
-  #   _tasks << {name: page._new_task_daily, task_type: "daily"}
-  #   model.buffer.save!
-  #   page._new_task_daily = ''
-  # end
+  def daily_tasks
+    self.model._tasks.find({ task_type: 'daily'})
+  end
 
-  # def add_task_todo
-  #   _tasks << {name: page._new_task_todo, task_type: "todo"}
-  #   model.buffer.save!
-  #   page._new_task_todo = ''
-  # end
+  def add_task_daily
+    buffy = self.model.buffer
+    buffy._tasks  << {name: page._new_task_daily, task_type: "daily"}
+    buffy.save!
+    page._new_task_daily = ''
+  end
 
-  # def remove_task(task)
-  #   model._tasks.delete(task)
-  # end
+  def todo_tasks
+    self.model._tasks.find({ task_type: 'todo'})
+  end
+
+  def add_task_todo
+    buffy = self.model.buffer
+    buffy._tasks << {name: page._new_task_todo, task_type: "todo"}
+    buffy.save!
+    page._new_task_todo = ''
+  end
+
+  def remove_task(task)
+    buffy = self.model.buffer
+    buffy._tasks.delete(task)
+    buffy.save!
+  end
 
   def about
     # Add code for when the about view is loaded
