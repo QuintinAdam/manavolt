@@ -12,48 +12,47 @@ class MainController < Volt::ModelController
 
   def show
     store._teams.find(_id: params._id).then do |results|
+      #self is important
       self.model = results[0]
+      # self.model._tasks.size
     end
+    # page._new_task_repeatable = ''
+    # page._new_task_daily = ''
+    # page._new_task_todo = ''
   end
-
-  # def find_repeatable
-  #   # _tasks.find(tasks_type: 'repeatable')
-  #   self._tasks.select{|x| x._tasks_type == 'repeatable'}
-  #   # [{_name:}]
-  # end
 
   def add_team
     self._teams << page._new_team
     page._new_team = {}
   end
 
-  def remove_team(team)
-    _teams.delete(team)
-  end
+  # def remove_team(team)
+  #   _teams.delete(team)
+  # end
 
   ###tasks
 
   def add_task_repeatable
-    self._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
+    _tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
     self.model.buffer.save!
     page._new_task_repeatable = ''
   end
 
-  def add_task_daily
-    self._tasks << {name: page._new_task_daily, task_type: "daily"}
-    self.model.buffer.save!
-    page._new_task_daily = ''
-  end
+  # def add_task_daily
+  #   _tasks << {name: page._new_task_daily, task_type: "daily"}
+  #   model.buffer.save!
+  #   page._new_task_daily = ''
+  # end
 
-  def add_task_todo
-    self._tasks << {name: page._new_task_todo, task_type: "todo"}
-    self.model.buffer.save!
-    page._new_task_todo = ''
-  end
+  # def add_task_todo
+  #   _tasks << {name: page._new_task_todo, task_type: "todo"}
+  #   model.buffer.save!
+  #   page._new_task_todo = ''
+  # end
 
-  def remove_task(task)
-    _tasks.delete(task)
-  end
+  # def remove_task(task)
+  #   model._tasks.delete(task)
+  # end
 
   def about
     # Add code for when the about view is loaded
