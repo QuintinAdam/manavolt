@@ -1,0 +1,38 @@
+<:Title>
+  {{ if loaded? }}
+    {{ name }}
+  {{ end }}
+
+<:Body>
+
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h1>{{ self.model._name }}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4 text-center">
+      <div class="well">
+        <:repeatable model="{{ self.model }}" />
+      </div>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <div class="well">
+        <:daily model="{{ self.model }}" />
+      </div>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <div class="well">
+        <:todo model="{{ self.model }}" />
+      </div>
+    </div>
+
+  </div>
+
+
+
+

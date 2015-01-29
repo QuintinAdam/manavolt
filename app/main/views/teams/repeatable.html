@@ -1,0 +1,19 @@
+<h3>Repeatable</h3>
+{{ _repeatables.each do |repeat| }}
+  <div class="well">
+    <h4>
+      {{ repeat._name }}
+      <a e-click="remove_repeat(repeat)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
+    </h4>
+    <span>{{ repeat.inspect }}</span>
+  </div>
+{{ end }}
+
+<hr />
+
+<form e-submit="add_repeatable" role="form">
+  <div class="form-group">
+    <input class="form-control" type="text" value="{{ page._repeatable_name  }}" />
+  </div>
+</form>
+
