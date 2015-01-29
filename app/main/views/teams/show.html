@@ -4,34 +4,35 @@
   {{ end }}
 
 <:Body>
-
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h1>{{ self.model._name }}</h1>
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col-md-4 text-center">
-      <div class="well">
-        <:repeatable model="{{ self.model }}" />
+  {{ if loaded? }}
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1>{{ self.model._name }}</h1>
       </div>
     </div>
 
-    <div class="col-md-4 text-center">
-      <div class="well">
-        <:daily model="{{ self.model }}" />
-      </div>
-    </div>
+    <div class="row">
 
-    <div class="col-md-4 text-center">
-      <div class="well">
-        <:todo model="{{ self.model }}" />
+      <div class='lists col-sm-12 col-md-6 col-lg-4'>
+        <div class="task-col repeatable" >
+          <:repeatable model="{{ self.model }}" />
+        </div>
       </div>
-    </div>
 
-  </div>
+      <div class='lists col-sm-12 col-md-6 col-lg-4'>
+        <div class="task-col daily" >
+          <:daily model="{{ self.model }}" />
+        </div>
+      </div>
+
+      <div class='lists col-sm-12 col-md-6 col-lg-4'>
+        <div class="task-col todo" >
+          <:todo model="{{ self.model }}" />
+        </div>
+      </div>
+
+    </div>
+  {{ end }}
 
 
 
