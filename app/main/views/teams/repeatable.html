@@ -1,5 +1,5 @@
 <h3>Repeatable</h3>
-{{ _repeatables.each do |repeat| }}
+{{ _repeatables.find( team_id: self.model._id ).each do |repeat| }}
   <div class="well">
     <h4>
       {{ repeat._name }}

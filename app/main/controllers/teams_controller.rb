@@ -18,8 +18,34 @@ class TeamsController < Volt::ModelController
   end
 
   def remove_team(team)
+    remove_team_repeatables(team)
+    remove_team_dailys(team)
+    remove_team_todos(team)
     _teams.delete(team)
-    # figure out dependent destroy
+  end
+
+  def remove_team_repeatables(team)
+    team._repeatables.size
+    r = team._repeatables.map{|x|x}
+    r.each do |repeat|
+      _repeatables.delete(repeat)
+    end
+  end
+
+  def remove_team_dailys(team)
+    team._dailys.size
+    d = team._dailys.map{|x|x}
+    d.each do |daily|
+      _dailys.delete(daily)
+    end
+  end
+
+  def remove_team_todos(team)
+    team._todos.size
+    t = team._todos.map{|x|x}
+    t.each do |todo|
+      _todos.delete(todo)
+    end
   end
 
 
