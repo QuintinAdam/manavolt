@@ -1,0 +1,19 @@
+<h3>Daily</h3>
+{{ _dailys.find( team_id: self.model._id ).each do |daily| }}
+  <div class="well">
+    <h4>
+      {{ daily._name }}
+      <a e-click="remove_daily(daily)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
+    </h4>
+    <span>{{ daily.inspect }}</span>
+  </div>
+{{ end }}
+
+<hr />
+
+<form e-submit="add_daily" role="form">
+  <div class="form-group">
+    <input class="form-control" type="text" value="{{ page._daily_name  }}" />
+  </div>
+</form>
+

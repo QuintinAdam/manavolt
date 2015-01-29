@@ -6,78 +6,100 @@ class MainController < Volt::ModelController
   #   # Add code for when the index view is loaded
   # end
 
-  def teams
-    self.model = :store
-  end
+  # def teams
+  #   self.model = :store
+  # end
 
-  def add_team
-    self._teams << page._new_team
-    page._new_team = {}
-  end
+  # def show
+  #   store._teams.find(_id: params._id).then do |results|
+  #     self.model = results[0]
+  #   end
+  # end
 
-  def remove_team(team)
-    _teams.delete(team)
-  end
+  # # def find_repeatable
+  # #   # _tasks.find(tasks_type: 'repeatable')
+  # #   self._tasks.select{|x| x._tasks_type == 'repeatable'}
+  # #   # [{_name:}]
+  # # end
 
-  def show
-    store._teams.find(_id: params._id).then do |results|
-      #self is important
-      self.model = results[0]
-    end
-    # page._new_task_repeatable = ''
-    # page._new_task_daily = ''
-    # page._new_task_todo = ''
-  end
   ###tasks
 
-  def repeatable_tasks
-    self.model._tasks.find({ task_type: 'repeatable'})
-  end
+  # def repeatable_tasks
+  #   self.model._tasks.find({ task_type: 'repeatable'})
+  # end
 
-  def add_task_repeatable
-    buffy = self.model.buffer
-    buffy._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
-    buffy.save!
-    page._new_task_repeatable = ''
-  end
+  # def add_task_repeatable
+  #   buffy = self.model.buffer
+  #   buffy._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
+  #   buffy.save!
+  #   page._new_task_repeatable = ''
+  # end
 
-  def daily_tasks
-    self.model._tasks.find({ task_type: 'daily'})
-  end
+  # def daily_tasks
+  #   self.model._tasks.find({ task_type: 'daily'})
+  # end
 
-  def add_task_daily
-    buffy = self.model.buffer
-    buffy._tasks  << {name: page._new_task_daily, task_type: "daily"}
-    buffy.save!
-    page._new_task_daily = ''
-  end
+  # def add_task_daily
+  #   buffy = self.model.buffer
+  #   buffy._tasks  << {name: page._new_task_daily, task_type: "daily"}
+  #   buffy.save!
+  #   page._new_task_daily = ''
+  # end
 
-  def todo_tasks
-    self.model._tasks.find({ task_type: 'todo'})
-  end
+  # def todo_tasks
+  #   self.model._tasks.find({ task_type: 'todo'})
+  # end
 
-  def add_task_todo
-    buffy = self.model.buffer
-    buffy._tasks << {name: page._new_task_todo, task_type: "todo"}
-    buffy.save!
-    page._new_task_todo = ''
-  end
+  # def add_task_todo
+  #   buffy = self.model.buffer
+  #   buffy._tasks << {name: page._new_task_todo, task_type: "todo"}
+  #   buffy.save!
+  #   page._new_task_todo = ''
+  # end
 
-  def remove_task(task)
-    buffy = self.model.buffer
-    buffy._tasks.delete(task)
-    buffy.save!
-  end
+  # def remove_task(task)
+  #   buffy = self.model.buffer
+  #   buffy._tasks.delete(task)
+  #   buffy.save!
+  # end
+
+  # def remove_team(team)
+  #   _teams.delete(team)
+  # end
+
+  # ###tasks
+
+  # def add_task_repeatable
+  #   self.model._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
+  #   self.model.buffer.save!
+  #   page._new_task_repeatable = ''
+  # end
+
+  # def add_task_daily
+  #   self._tasks << {name: page._new_task_daily, task_type: "daily"}
+  #   self.model.buffer.save!
+  #   page._new_task_daily = ''
+  # end
+
+  # def add_task_todo
+  #   self._tasks << {name: page._new_task_todo, task_type: "todo"}
+  #   self.model.buffer.save!
+  #   page._new_task_todo = ''
+  # end
+
+  # def remove_task(task)
+  #   _tasks.delete(task)
+  # end
 
   def about
     # Add code for when the about view is loaded
   end
 
-  def options
-    vals = page._opts.to_s.or('').split(/,/)
+  # def options
+  #   vals = page._opts.to_s.or('').split(/,/)
 
-    return vals
-  end
+  #   return vals
+  # end
 
   private
 

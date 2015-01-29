@@ -1,0 +1,19 @@
+<h3>Todo</h3>
+{{ _todos.find( team_id: self.model._id ).each do |todo| }}
+  <div class="well">
+    <h4>
+      {{ todo._name }}
+      <a e-click="remove_todo(todo)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
+    </h4>
+    <span>{{ todo.inspect }}</span>
+  </div>
+{{ end }}
+
+<hr />
+
+<form e-submit="add_todo" role="form">
+  <div class="form-group">
+    <input class="form-control" type="text" value="{{ page._todo_name  }}" />
+  </div>
+</form>
+
