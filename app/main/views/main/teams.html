@@ -6,13 +6,20 @@
 
   <p>Put a list of teams here... and create new teams.</p>
   <div>
-    <table class="table team-table">
-      {{ _teams.each do |team| }}
+    <table class="table table-striped table-hover">
+      <thead>
         <tr>
-          <td><a href="/teams/{{ team._id }}">{{ team._name }}</a></td>
-          <td><button e-click="remove_team(team)">X</button></td>
+          <th>Teams</th>
         </tr>
-      {{ end }}
+      </thead>
+      <tbody>
+        {{ _teams.each do |team| }}
+          <tr>
+            <td><a href="/teams/{{ team._id }}">{{ team._name }}</a></td>
+            <td><span e-click="remove_team(team)" class='glyphicon glyphicon-remove'></span></td>
+          </tr>
+        {{ end }}
+      </tbody>
     </table>
 
     <form e-submit="add_team" role="form">

@@ -1,19 +1,29 @@
-<h3>Todo</h3>
-{{ _todos.find( team_id: self.model._id ).each do |todo| }}
-  <div class="well">
-    <h4>
-      {{ todo._name }}
-      <a e-click="remove_todo(todo)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
-    </h4>
-    <span>{{ todo.inspect }}</span>
-  </div>
-{{ end }}
-
-<hr />
-
+<h2>{{ _todos.size }} ToDo</h2>
 <form e-submit="add_todo" role="form">
   <div class="form-group">
-    <input class="form-control" type="text" value="{{ page._todo_name  }}" />
+     <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New ToDo Task" >
   </div>
 </form>
+
+<ul class='task-list todo-list'>
+  {{ _todos.each do |todo| }}
+    <li class='task-item'>
+      <div class='task-options'>
+        <span e-click="remove_todo(todo)" class='glyphicon glyphicon-remove'></span>
+      </div>
+      <div class='task-text'>
+        {{ todo._name }}
+      </div>
+    </li>
+  {{ end }}
+</ul>
+
+{{ if _todos.size >= 10 }}
+  <form e-submit="add_todo" role="form">
+    <div class="form-group">
+       <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New Todo Task" >
+    </div>
+  </form>
+{{ end }}
+
 

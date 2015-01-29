@@ -22,9 +22,45 @@ class MainController < Volt::ModelController
   # #   # [{_name:}]
   # # end
 
-  # def add_team
-  #   self._teams << page._new_team
-  #   page._new_team = {}
+  ###tasks
+
+  # def repeatable_tasks
+  #   self.model._tasks.find({ task_type: 'repeatable'})
+  # end
+
+  # def add_task_repeatable
+  #   buffy = self.model.buffer
+  #   buffy._tasks << {name: page._new_task_repeatable, task_type: "repeatable"}
+  #   buffy.save!
+  #   page._new_task_repeatable = ''
+  # end
+
+  # def daily_tasks
+  #   self.model._tasks.find({ task_type: 'daily'})
+  # end
+
+  # def add_task_daily
+  #   buffy = self.model.buffer
+  #   buffy._tasks  << {name: page._new_task_daily, task_type: "daily"}
+  #   buffy.save!
+  #   page._new_task_daily = ''
+  # end
+
+  # def todo_tasks
+  #   self.model._tasks.find({ task_type: 'todo'})
+  # end
+
+  # def add_task_todo
+  #   buffy = self.model.buffer
+  #   buffy._tasks << {name: page._new_task_todo, task_type: "todo"}
+  #   buffy.save!
+  #   page._new_task_todo = ''
+  # end
+
+  # def remove_task(task)
+  #   buffy = self.model.buffer
+  #   buffy._tasks.delete(task)
+  #   buffy.save!
   # end
 
   # def remove_team(team)
@@ -55,9 +91,9 @@ class MainController < Volt::ModelController
   #   _tasks.delete(task)
   # end
 
-  # def about
-  #   # Add code for when the about view is loaded
-  # end
+  def about
+    # Add code for when the about view is loaded
+  end
 
   # def options
   #   vals = page._opts.to_s.or('').split(/,/)

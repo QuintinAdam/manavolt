@@ -1,1 +1,85 @@
 // Place your apps css here
+.lists{
+  padding: 0 10px;
+  margin-bottom: 15px;
+  .task-col{
+    background: #f2f5f6;
+    border: 1px solid #c3d1d6;
+    padding: 15px;
+    // max-height: 60vh;
+    overflow-y: scroll;
+    ul.task-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li.task-item{
+        min-height: 40px;
+        margin-bottom: 10px;
+        background-color: #c9daf8;
+        border: 1px solid #b4c4df;
+        &:hover{
+          .task-options{
+            opacity: 1;
+          }
+        }
+        .task-options{
+          float: right;
+          margin: 10px 7px 0 7px;
+          opacity: .25;
+          span.glyphicon{
+            cursor: pointer;
+          }
+        }
+        .task-text{
+          padding: 10px 0 10px 52px;
+
+        }
+      }
+    }
+  }
+}
+
+
+
+// scrollbar styles just cuz why not
+.task-col::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+
+.task-col::-webkit-scrollbar-thumb {
+  border-width: 0 1px 0 6px;
+}
+
+.task-col::-webkit-scrollbar-thumb {
+  background-color: rgba(150,150,150,.2);
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(150,150,150,.1),inset 0 -1px 0 rgba(150,150,150,.07);
+  box-shadow: inset 1px 1px 0 rgba(150,150,150,.1),inset 0 -1px 0 rgba(150,150,150,.07);
+}
+
+.task-column::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+
+.task-column::-webkit-scrollbar-track {
+  border-width: 0 1px 0 6px;
+}
+
+.task-column::-webkit-scrollbar-track {
+-webkit-background-clip: padding;
+-moz-background-clip: padding;
+background-clip: padding-box;
+border: solid transparent;
+}
+
+.task-column::-webkit-scrollbar-corner {
+background: 0 0;
+}

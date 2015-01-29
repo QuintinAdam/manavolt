@@ -1,19 +1,27 @@
-<h3>Daily</h3>
-{{ _dailys.find( team_id: self.model._id ).each do |daily| }}
-  <div class="well">
-    <h4>
-      {{ daily._name }}
-      <a e-click="remove_daily(daily)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
-    </h4>
-    <span>{{ daily.inspect }}</span>
-  </div>
-{{ end }}
-
-<hr />
-
+<h2>{{ _dailys.size }} Daily</h2>
 <form e-submit="add_daily" role="form">
   <div class="form-group">
-    <input class="form-control" type="text" value="{{ page._daily_name  }}" />
+     <input class="form-control" type="text" value="{{ page._daily_name }}" placeholder="New Daily Task" >
   </div>
 </form>
 
+<ul class='task-list daily-list'>
+  {{ _dailys.each do |daily| }}
+    <li class='task-item'>
+      <div class='task-options'>
+        <span e-click="remove_daily(daily)" class='glyphicon glyphicon-remove'></span>
+      </div>
+      <div class='task-text'>
+        {{ daily.name }}
+      </div>
+    </li>
+  {{ end }}
+</ul>
+
+{{if _dailys.size >= 10 }}
+  <form e-submit="add_daily" role="form">
+    <div class="form-group">
+       <input class="form-control" type="text" value="{{ page._daily_name }}" placeholder="New Daily Task" >
+    </div>
+  </form>
+{{ end }}

@@ -1,19 +1,28 @@
-<h3>Repeatable</h3>
-{{ _repeatables.each do |repeat| }}
-  <div class="well">
-    <h4>
-      {{ repeat._name }}
-      <a e-click="remove_repeat(repeat)"><button class="btn btn-default pull-right"><span class="glyphicon glyphicon-trash"></span></button></a>
-    </h4>
-    <span>{{ repeat.inspect }}</span>
-  </div>
-{{ end }}
-
-<hr />
-
+<h2>{{ _repeatables.size }} Repeatable</h2>
 <form e-submit="add_repeatable" role="form">
   <div class="form-group">
-    <input class="form-control" type="text" value="{{ page._repeatable_name  }}" />
+     <input class="form-control" type="text" value="{{ page._repeatable_name }}" placeholder="New Repeatable Task" >
   </div>
 </form>
+
+<ul class='task-list repeatable-list'>
+  {{ _repeatables.each do |repeat| }}
+    <li class='task-item'>
+      <div class='task-options'>
+        <span e-click="remove_repeat(repeat)" class='glyphicon glyphicon-remove'></span>
+      </div>
+      <div class='task-text'>
+        {{ repeat._name }}
+      </div>
+    </li>
+  {{ end }}
+</ul>
+
+{{if _repeatables.size >= 10 }}
+  <form e-submit="add_repeatable" role="form">
+    <div class="form-group">
+       <input class="form-control" type="text" value="{{ page._repeatable_name }}" placeholder="New Repeatable Task" >
+    </div>
+  </form>
+{{ end }}
 
