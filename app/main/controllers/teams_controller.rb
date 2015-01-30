@@ -13,7 +13,7 @@ class TeamsController < Volt::ModelController
   private
 
   def add_team
-    _teams << { name: page._new_team }
+    _teams << { name: page._new_team, level: 1, experience: 0, health: 50, mana: 0 }
     page._new_team = ''
   end
 
@@ -28,6 +28,7 @@ class TeamsController < Volt::ModelController
     team._repeatables.size
     r = team._repeatables.map{|x|x}
     r.each do |repeat|
+      puts "repeat #{repeat} deleted"
       _repeatables.delete(repeat)
     end
   end
@@ -105,4 +106,61 @@ class TeamsController < Volt::ModelController
   def todo_uncompleted(todo)
     todo.completed = false
   end
+
+
+  #### Dashboard
+
+
+  def add_mana
+    self.model._mana += 5
+  end
+
+  def remove_mana
+    self.model._mana -= 5
+  end
+
+
+  def get_health_percent
+    (_health.inspect.to_i / 50) * 100
+  end
+
+  def add_health
+    self.model._health += 5
+  end
+
+  def remove_health
+    self.model._health -= 5
+  end
+
+  # def level_logic
+  #   (_level.inspect.to_i)
+  # end
+
+  #### Temp Admin Panel
+
+  def add_experience
+    self.model._experience += 10
+    if _experience >= level_cap
+      level_up_boiii
+    end
+  end
+
+  def remove_experience
+    self.model._experience -= 10
+  end
+
+  def level_percentage
+    ( _experience.inspect.to_f / level_cap * 100).round
+  end
+
+  def level_cap
+    ( (_level.inspect.to_i * 125) / 2).round
+  end
+
+  def level_up_boiii
+    self.model._level += 1
+    self.model._health = 50
+    self.model._experience = 0
+  end
+
 end

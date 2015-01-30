@@ -1,0 +1,55 @@
+{{ if Volt.user }}
+<div class="row">
+  <div class="col-sm-12 text-left">
+    <div class="btn-group" role="group" aria-label="Experience">
+      <button class="btn btn-default" e-click="add_experience">add xp</button>
+      <button class="btn btn-default" e-click="remove_experience">remove xp</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Health">
+      <button class="btn btn-default" e-click="add_health">add hp</button>
+      <button class="btn btn-default" e-click="remove_health">remove hp</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Mana">
+      <button class="btn btn-default" e-click="add_mana">add mana</button>
+      <button class="btn btn-default" e-click="remove_mana">remove mana</button>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+<div class="row space-above">
+
+  <div class="col-sm-4 text-left">
+    <div class="well">
+      <h4>
+        {{ self.model._name }}
+        <small>Level: {{ self.model._level }}</small>
+        <div class='pull-right'>
+          <span class="glyphicon glyphicon-flash"></span>
+          {{ self.model._mana }}
+        </div>
+      </h4>
+    </div>
+  </div>
+
+  <div class="col-sm-8 text-center">
+    <div class="progress">
+      <div class="mana-volt-bar progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ self.model._health}}" aria-valuemin="0" aria-valuemax="50" style="width: {{ get_health_percent }}%">
+        <span class="glyphicon glyphicon-heart-empty"></span>
+        {{ self.model._health }} / 50
+      </div>
+    </div>
+
+    <div class="progress">
+      <div class="mana-volt-bar progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ self.model._experience }}" aria-valuemin="0" aria-valuemax="{{ level_cap }}" style="width: {{ level_percentage }}%">
+        <span class="glyphicon glyphicon-signal"></span>
+        {{ self.model._experience }} / {{ level_cap }}
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+

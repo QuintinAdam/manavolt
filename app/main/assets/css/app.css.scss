@@ -1,3 +1,14 @@
+.space-above {
+  margin-top: 60px;
+}
+
+.progress {
+  height: 29px !important;
+  .mana-volt-bar {
+    line-height: 29px !important;
+  }
+}
+
 // Place your apps css here
 .lists{
   padding: 0 10px;
