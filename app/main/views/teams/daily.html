@@ -11,6 +11,15 @@
       <div class='task-options'>
         <span e-click="remove_daily(daily)" class='glyphicon glyphicon-remove'></span>
       </div>
+      <div class='task-controls'>
+        <div class="daily task-checker">
+          {{ if daily.completed == true }}
+            <a e-click="daliy_uncompleted(daily)" class="completed daily-checkbox"><span class="completed"></span></a>
+          {{ else }}
+            <a e-click="daliy_completed(daily)" class="daily-checkbox uncompleted"><span class="uncompleted"></span></a>
+          {{ end }}
+        </div>
+      </div>
       <div class='task-text'>
         {{ daily.name }}
       </div>

@@ -7,12 +7,18 @@
 
 <ul class='task-list repeatable-list'>
   {{ _repeatables.each do |repeat| }}
-    <li class='task-item'>
+    <li class='task-item repeatable'>
       <div class='task-options'>
         <span e-click="remove_repeat(repeat)" class='glyphicon glyphicon-remove'></span>
       </div>
+      <div class='task-controls'>
+        <div class="task-actions">
+          <a e-click="did_positive_task(repeat)" class="task-plus"><span class="plus glyphicon glyphicon-plus" ></span></a>
+          <a e-click="did_negative_task(repeat)" class="task-minus"><span class="minus glyphicon glyphicon-minus" ></span></a>
+        </div>
+      </div>
       <div class='task-text'>
-        {{ repeat._name }}
+        {{ repeat.name }}{{ repeat.score }}
       </div>
     </li>
   {{ end }}

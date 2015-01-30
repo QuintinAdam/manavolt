@@ -6,17 +6,18 @@
     background: #f2f5f6;
     border: 1px solid #c3d1d6;
     padding: 15px;
-    // max-height: 60vh;
+    max-height: 86vh;
     overflow-y: scroll;
     ul.task-list{
       margin: 0;
       padding: 0;
       list-style: none;
       li.task-item{
-        min-height: 40px;
+        min-height: 50px;
         margin-bottom: 10px;
         background-color: #c9daf8;
         border: 1px solid #b4c4df;
+        position: relative;
         &:hover{
           .task-options{
             opacity: 1;
@@ -24,7 +25,7 @@
         }
         .task-options{
           float: right;
-          margin: 10px 7px 0 7px;
+          margin: 4px 7px 0 7px;
           opacity: .25;
           span.glyphicon{
             cursor: pointer;
@@ -32,15 +33,106 @@
         }
         .task-text{
           padding: 10px 0 10px 52px;
-
         }
       }
     }
   }
 }
 
+.task-controls{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  float: none;
+  margin: 0;
+  display: inline-block;
+  .task-actions{
+    background-color: #5288e9;
+    position: relative;
+    width: 3em;
+    height: 100%;
+    .task-plus,.task-minus{
+      height: 50%;
+      display: block;
+      width: 100%;
+      position: relative;
+      &:hover{
+        background-color: #2a6de3;
+      }
+      span{
+        position: absolute;
+        margin: auto;
+        height: 1em;
+        width: 1em;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: #333;
+        font-size: 10px;
+      }
+    }
+    .task-minus{
+      border-top: 1px solid #1a58c7;
+    }
+  }
+}
 
-
+.task-controls .task-checker{
+  position: relative;
+  width: 3em;
+  height: 100%;
+  a.uncompleted{
+    font-size: 12px;
+    span.uncompleted{
+      top:28%;
+      right: 32%;
+    }
+    &:hover{
+      font-size: 24px;
+      span.uncompleted{
+        top:10%;
+        right: 20%;
+      }
+    }
+  }
+  a.completed{
+    font-size: 24px;
+    // text-align: center;
+    span.completed{
+      top:10%;
+      right: 20%;
+    }
+  }
+  a{
+    background-color: #5288e9;
+    height: 100%;
+    display: block;
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    span{
+      position: absolute;
+      font-family: Glyphicons Halflings;
+    }
+    .uncompleted:before{
+      opacity: .6;
+      content: "\E157";
+    }
+    .completed:before{
+      content: "\E013";
+    }
+  }
+  a:hover .uncompleted:before{
+    opacity: 1;
+    content: "\E013";
+  }
+  a:hover .completed:before{
+    content: "\E014";
+  }
+}
 // scrollbar styles just cuz why not
 .task-col::-webkit-scrollbar {
   height: 16px;

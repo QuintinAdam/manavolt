@@ -7,14 +7,21 @@
 
 <ul class='task-list todo-list'>
   {{ _todos.each do |todo| }}
-    <li class='task-item'>
-      <div class='task-options'>
-        <span e-click="remove_todo(todo)" class='glyphicon glyphicon-remove'></span>
-      </div>
-      <div class='task-text'>
-        {{ todo._name }}
-      </div>
-    </li>
+    {{ if !todo.completed }}
+      <li class='task-item'>
+        <div class='task-options'>
+          <span e-click="remove_todo(todo)" class='glyphicon glyphicon-remove'></span>
+        </div>
+        <div class='task-controls'>
+          <div class="todo task-checker">
+            <a e-click="todo_completed(todo)" class="todo-checkbox uncompleted"><span class="uncompleted"></span></a>
+          </div>
+        </div>
+        <div class='task-text'>
+          {{ todo.name }}
+        </div>
+      </li>
+    {{ end }}
   {{ end }}
 </ul>
 
