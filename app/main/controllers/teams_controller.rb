@@ -63,11 +63,14 @@ class TeamsController < Volt::ModelController
   def did_positive_task(repeat)
     repeat.score = repeat.score.or(0)
     repeat.score += 1
+    add_experience(level_modifier)
+    add_mana(5)
   end
 
   def did_negative_task(repeat)
     repeat.score = repeat.score.or(0)
     repeat.score -= 1
+    remove_health(3)
   end
   #### Daily
 
@@ -82,6 +85,8 @@ class TeamsController < Volt::ModelController
 
   def daliy_completed(daily)
     daily.completed = true
+    add_experience(level_modifier)
+    add_mana(5)
   end
 
   def daliy_uncompleted(daily)
@@ -101,6 +106,8 @@ class TeamsController < Volt::ModelController
 
   def todo_completed(todo)
     todo.completed = true
+    add_experience(level_modifier)
+    add_mana(5)
   end
 
   def todo_uncompleted(todo)
@@ -108,17 +115,15 @@ class TeamsController < Volt::ModelController
   end
 
 
-  #### Dashboard
+  #### Dashboard || Leveling System
 
-
-  def add_mana
-    self.model._mana += 5
+  def add_mana(val)
+    self.model._mana += val
   end
 
-  def remove_mana
-    self.model._mana -= 5
+  def remove_mana(val)
+    self.model._mana -= val
   end
-
 
   def get_health_percent
     (_health.inspect.to_i / 50) * 100
@@ -128,25 +133,24 @@ class TeamsController < Volt::ModelController
     self.model._health += 5
   end
 
-  def remove_health
-    self.model._health -= 5
+  def remove_health(val)
+    self.model._health -= val
   end
 
-  # def level_logic
-  #   (_level.inspect.to_i)
-  # end
-
-  #### Temp Admin Panel
-
-  def add_experience
-    self.model._experience += 10
+  def add_experience(val)
+    self.model._experience += val.or(10)
     if _experience >= level_cap
-      level_up_boiii
+      went_over = _experience - level_cap
+      level_up_boiii(went_over)
     end
   end
 
-  def remove_experience
-    self.model._experience -= 10
+  def remove_experience(val)
+    self.model._experience -= val.or(10)
+  end
+
+  def level_modifier
+    (_level.inspect.to_i * 1.85).round + 10
   end
 
   def level_percentage
@@ -157,10 +161,10 @@ class TeamsController < Volt::ModelController
     ( (_level.inspect.to_i * 125) / 2).round
   end
 
-  def level_up_boiii
+  def level_up_boiii(remainder)
     self.model._level += 1
     self.model._health = 50
-    self.model._experience = 0
+    self.model._experience = remainder.or(0)
   end
 
 end
