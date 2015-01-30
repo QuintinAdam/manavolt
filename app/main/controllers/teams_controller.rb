@@ -48,9 +48,6 @@ class TeamsController < Volt::ModelController
     end
   end
 
-
-
-
   #### Repeatable
 
   def add_repeatable
@@ -62,9 +59,15 @@ class TeamsController < Volt::ModelController
     _repeatables.delete(repeat)
   end
 
+  def did_positive_task(repeat)
+    repeat.score = repeat.score.or(0)
+    repeat.score += 1
+  end
 
-
-
+  def did_negative_task(repeat)
+    repeat.score = repeat.score.or(0)
+    repeat.score -= 1
+  end
   #### Daily
 
   def add_daily
@@ -76,8 +79,13 @@ class TeamsController < Volt::ModelController
     _dailys.delete(daily)
   end
 
+  def daliy_completed(daily)
+    daily.completed = true
+  end
 
-
+  def daliy_uncompleted(daily)
+    daily.completed = false
+  end
 
   #### Todo
 
@@ -90,4 +98,11 @@ class TeamsController < Volt::ModelController
     _todos.delete(todo)
   end
 
+  def todo_completed(todo)
+    todo.completed = true
+  end
+
+  def todo_uncompleted(todo)
+    todo.completed = false
+  end
 end
