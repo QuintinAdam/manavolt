@@ -8,9 +8,12 @@
 <ul class='task-list daily-list'>
   {{ _dailys.each do |daily| }}
     <li class='task-item'>
+
       <div class='task-options'>
+        <span e-click="editing_daily(daily)" class="glyphicon glyphicon-pencil"></span>
         <span e-click="remove_daily(daily)" class='glyphicon glyphicon-remove'></span>
       </div>
+
       <div class='task-controls'>
         <div class="daily task-checker">
           {{ if daily.completed == true }}
@@ -20,9 +23,41 @@
           {{ end }}
         </div>
       </div>
+
       <div class='task-text'>
-        {{ daily.name }}
+        {{ if daily.editing == true}}
+          {{ page._task_name }}
+        {{ else }}
+          {{ daily.name }}
+        {{ end }}
       </div>
+
+      {{ if daily.editing == true}}
+        <div class="daily-edit-block">
+
+          <div class="task-name">
+            <h5>Name:</h5>
+            <form role="form">
+              <div class="form-group">
+                 <input class="form-control" type="text" value="{{ page._task_name }}" placeholder="New Daily Task" >
+              </div>
+            </form>
+          </div>
+
+          <div class="task-difficulty">
+            <h5>Difficulty:</h5>
+            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 1) }}" e-click="set_daily_difficulty(daily, 1)">Easy</button>
+            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 2) }}" e-click="set_daily_difficulty(daily, 2)">Medium</button>
+            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 3) }}" e-click="set_daily_difficulty(daily, 3)">Hard</button>
+          </div>
+
+          <div class="text-center task-save">
+            <button class="btn btn-default" e-click="save_daily(daily)">Save &amp; Close</button>
+          </div>
+
+        </div>
+      {{ end }}
+
     </li>
   {{ end }}
 </ul>
