@@ -1,4 +1,4 @@
-<h2>{{ _todos.size }} ToDo</h2>
+<h2>{{ to_do_incomplete_count}} ToDo</h2>
 <form e-submit="add_todo" role="form">
   <div class="form-group">
      <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New ToDo Task" >
@@ -8,7 +8,7 @@
 <ul class='task-list todo-list'>
   {{ _todos.each do |todo| }}
     {{ if !todo.completed }}
-      <li class='task-item'>
+      <li class='task-item {{ set_score_class_name(todo) }} {{ todo.score_class_name }}'>
         <div class='task-options'>
           <span e-click="remove_todo(todo)" class='glyphicon glyphicon-remove'></span>
         </div>
@@ -25,7 +25,7 @@
   {{ end }}
 </ul>
 
-{{ if _todos.size >= 10 }}
+{{ if to_do_incomplete_count >= 10 }}
   <form e-submit="add_todo" role="form">
     <div class="form-group">
        <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New Todo Task" >

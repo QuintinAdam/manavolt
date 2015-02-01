@@ -56,13 +56,34 @@ class TeamsController < Volt::ModelController
     end
   end
 
-
-
+  def end_of_day(team)
+    # team._todos.size
+    # team._dailys.size
+    # team._repeatables.size
+    team._todos.each do |todo|
+      if !todo.completed
+        todo.score -= todo.difficulty
+      end
+      # if past due_date lower hp
+    end
+    team._dailys.each do |daily|
+      if daily.completed == true
+        daily.score += daily.difficulty
+        daily.completed = false
+      else
+        daily.score -= daily.difficulty
+        remove_health(3 * daily.difficulty)
+      end
+    end
+    team._repeatables.each do |repeat|
+      repeat.score -= repeat.difficulty # minus 1 2 or 3 based on difficulty
+    end
+  end
 
   #### Repeatable
 
   def add_repeatable
-    _repeatables << {name: page._repeatable_name, team_id: self.model.__id}
+    _repeatables << {name: page._repeatable_name, team_id: self.model.__id, score: 0, difficulty: 1}
     page._repeatable_name = ''
   end
 
@@ -71,24 +92,21 @@ class TeamsController < Volt::ModelController
   end
 
   def did_positive_task(repeat)
-    repeat.score = repeat.score.or(0)
     repeat.score += 1
     add_experience(level_modifier)
     add_mana(5)
   end
 
   def did_negative_task(repeat)
-    repeat.score = repeat.score.or(0)
     repeat.score -= 1
     remove_health(3)
   end
 
 
-
   #### Daily
 
   def add_daily
-    _dailys << {name: page._daily_name, team_id: self.model.__id, difficulty: 1, editing: false}
+    _dailys << {name: page._daily_name, team_id: self.model.__id, difficulty: 1, editing: false, score: 0, streak: 0}
     page._daily_name = ''
   end
 
@@ -108,6 +126,8 @@ class TeamsController < Volt::ModelController
 
   def daliy_uncompleted(daily)
     daily.completed = false
+    remove_experience(level_modifier)
+    remove_mana(5)
   end
 
   def editing_daily(daily)
@@ -132,13 +152,10 @@ class TeamsController < Volt::ModelController
     daily.difficulty = val
   end
 
-
-
-
   #### Todo
 
   def add_todo
-    _todos << {name: page._todo_name, team_id: self.model.__id}
+    _todos << {name: page._todo_name, team_id: self.model.__id, score: 0, difficulty: 1}
     page._todo_name = ''
   end
 
@@ -156,9 +173,32 @@ class TeamsController < Volt::ModelController
     todo.completed = false
   end
 
+  def todo_completed_count
+    _todos.count { |t| t._completed }
+  end
 
-
-
+  def to_do_incomplete_count
+    _todos.size - todo_completed_count
+  end
+  ####
+  def set_score_class_name(task)
+    task_score = task.score
+    if task_score.between?(-1000, -26)
+      task.score_class_name = 'much-fail-you-have'
+    elsif task_score.between?(-26, -16)
+      task.score_class_name = 'failing-harder'
+    elsif task_score.between?(-16, -6)
+      task.score_class_name = 'failing'
+    elsif task_score.between?(-6, 6)
+      task.score_class_name = 'neutral-like-switzerland'
+    elsif task_score.between?(6, 16)
+      task.score_class_name = 'passing'
+    elsif task_score.between?(16, 26)
+      task.score_class_name = 'passing-like-a-boss'
+    else
+      task.score_class_name = 'u-so-good'
+    end
+  end
   #### Dashboard || Leveling System
 
   def add_mana(val)

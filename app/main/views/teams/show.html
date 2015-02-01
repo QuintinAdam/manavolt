@@ -9,13 +9,11 @@
 
   <div class="dashboard-spacer">
     <div class="row">
-
       <div class='lists col-sm-12 col-md-6 col-lg-4'>
         <div class="task-col repeatable" >
           <:repeatable model="{{ self.model }}" />
         </div>
       </div>
-
       <div class='lists col-sm-12 col-md-6 col-lg-4'>
         <div class="task-col daily" >
           <:daily model="{{ self.model }}" />

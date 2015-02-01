@@ -40,10 +40,11 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      // default list style
       li.task-item{
         min-height: 45px;
         margin-bottom: 10px;
-        background-color: #c9daf8;
+        // background-color: #c9daf8;
         border: 1px solid #b4c4df;
         position: relative;
         &:hover{
@@ -64,6 +65,70 @@
           padding: 10px 0 10px 52px;
         }
       }
+      li.much-fail-you-have{
+        background-color: #E7B8B1;
+        .task-actions,.task-checker{
+          background-color: darken(#E7B8B1, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#E7B8B1, 35%);
+          }
+        }
+      }
+      li.failing-harder{
+        background-color: #F4CCCC;
+        .task-actions,.task-checker{
+          background-color: darken(#F4CCCC, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#F4CCCC, 35%);
+          }
+        }
+      }
+      li.failing{
+        background-color: #FDE5D0;
+        .task-actions,.task-checker{
+          background-color: darken(#FDE5D0, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#FDE5D0, 35%);
+          }
+        }
+      }
+      li.neutral-like-switzerland{
+        background-color: #FFF2D1;
+        .task-actions,.task-checker{
+          background-color: darken(#FFF2D1, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#FFF2D1, 35%);
+          }
+        }
+      }
+      li.passing{
+        background-color: #D8EAD4;
+        .task-actions,.task-checker{
+          background-color: darken(#D8EAD4, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#D8EAD4, 35%);
+          }
+        }
+      }
+      li.passing-like-a-boss{
+        background-color: #D1E0E3;
+        .task-actions,.task-checker{
+          background-color: darken(#D1E0E3, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#D1E0E3, 35%);
+          }
+        }
+      }
+      li.u-so-good{
+        background-color: #C9DAF5;
+        .task-actions,.task-checker{
+          background-color: darken(#C9DAF5, 20%);
+          .task-plus:hover,.task-minus:hover{
+            background-color: darken(#C9DAF5, 35%);
+          }
+        }
+      }
+
     }
   }
 }
@@ -86,9 +151,6 @@
       display: block;
       width: 100%;
       position: relative;
-      &:hover{
-        background-color: #2a6de3;
-      }
       span{
         position: absolute;
         margin: auto;
@@ -103,7 +165,7 @@
       }
     }
     .task-minus{
-      border-top: 1px solid #1a58c7;
+      border-top: 1px solid #333;
     }
   }
 }
@@ -111,7 +173,7 @@
 .daily-edit-block {
   position: relative;
   height: 300px;
-  border-top: 1px solid #b4c4df;
+  border-top: 1px solid #c3d1d6;
   margin-top: 5px;
   padding: 20px;
   .task-difficulty {
@@ -159,7 +221,7 @@
     }
   }
   a{
-    background-color: #5288e9;
+    // background-color: #5288e9;
     height: 100%;
     display: block;
     width: 100%;

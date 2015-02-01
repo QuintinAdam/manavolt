@@ -4,4 +4,7 @@ class Daily < Volt::Model
   field :completed
   field :difficulty
   field :editing
+  field :score
+  field :score_class_name
+  field :streak
 end
