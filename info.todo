@@ -19,18 +19,17 @@ ManaVolt:
     rewards could be bought with the teams gold
 
   Users:
-    ☐ or username
-    ☐ password
+    ✔ email @done (15-01-30 09:36)
+    ✔ password @done (15-01-30 09:36)
     ☐ belongs to team
     ☐ (could have tasks assigned to them and tasks completed)
 
   Teams:
-    ☐ name
-    ☐ level
-    ☐ xp
-    ☐ hp
-    ☐ mana
-    ☐ gold
+    ✔ name @done (15-01-30 09:36)
+    ✔ level @done (15-01-30 09:36)
+    ✔ xp @done (15-01-30 09:36)
+    ✔ hp @done (15-01-30 09:36)
+    ✔ mana @done (15-01-30 09:36)
     ☐ teams could have this stuff or it could be the members...
     ☐ has many users
     ☐ has many tags
@@ -39,16 +38,16 @@ ManaVolt:
   Tasks:
     -tasks are split into 3 different categories all belong to a team
     shared attributes:
-      ☐ name
+      ✔ name @done (15-01-30 09:37)
       ☐ description
       ☐ difficulty(easy, medium, hard)
       ☐ could have tags
-      ☐ task type
+      ✔ task type @done (15-01-30 09:37)
     repeatable action/offense:
-      ☐ positive active /negative offense
+      ✔ positive active /negative offense @done (15-01-30 09:37)
       ☐ could have tags
     dailies:
-      ☐ repeat on day
+      ✔ repeat on day @done (15-01-30 09:37)
       ☐ add checklist (could be a new model that belongs to a task)
     todo's:
       ☐ due date
@@ -60,25 +59,25 @@ ManaVolt:
     ☐ could have tags as well
 Pages/actions:
   home:
-    ☐ about because why not...
-    ☐ contact form although i don't see a clear way to send mail
+    ✔ about because why not... @done (15-01-30 09:37)
+
   users:
-    ☐ login
-    ☐ signup
-    ☐ logout
+    ✔ login @done (15-01-30 09:37)
+    ✔ signup @done (15-01-30 09:37)
+    ✔ logout @done (15-01-30 09:37)
     ☐ profile page
   team:
-    ☐ new team
+    ✔ new team @done (15-01-30 09:37)
     team show(main page):
      ☐ create tags
      ☐ edit tags
      ☐ delete tags
-     ☐ show hp
-     ☐ show xp
-     ☐ show mana
-     ☐ show level
+     ✔ show hp @done (15-01-30 09:37)
+     ✔ show xp @done (15-01-30 09:37)
+     ✔ show mana @done (15-01-30 09:37)
+     ✔ show level @done (15-01-30 09:37)
       tasks:
-        ☐ add/edit/remove tasks from each of the 3 categories
+        ✔ add/edit/remove tasks from each of the 3 categories @done (15-01-30 09:38)
         ☐ changes the attributes from the different categories
         ☐ add tags to the tasks
       rewards:
