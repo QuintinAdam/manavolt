@@ -1,0 +1,42 @@
+// scrollbar styles just cuz why not
+.task-col::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+
+.task-col::-webkit-scrollbar-thumb {
+  border-width: 0 1px 0 6px;
+}
+
+.task-col::-webkit-scrollbar-thumb {
+  background-color: rgba(150,150,150,.2);
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(150,150,150,.1),inset 0 -1px 0 rgba(150,150,150,.07);
+  box-shadow: inset 1px 1px 0 rgba(150,150,150,.1),inset 0 -1px 0 rgba(150,150,150,.07);
+}
+
+.task-column::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+
+.task-column::-webkit-scrollbar-track {
+  border-width: 0 1px 0 6px;
+}
+
+.task-column::-webkit-scrollbar-track {
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: solid transparent;
+}
+
+.task-column::-webkit-scrollbar-corner {
+  background: 0 0;
+}

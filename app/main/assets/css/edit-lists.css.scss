@@ -1,0 +1,22 @@
+.daily-edit-block {
+  position: relative;
+  height: 300px;
+  border-top: 1px solid #c3d1d6;
+  margin-top: 5px;
+  padding: 20px;
+  .task-difficulty {
+    width: 100%;
+    button.btn {
+      width: 32.41%;
+    }
+  }
+  .task-save {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    button {
+      width: 100%;
+    }
+  }
+}
