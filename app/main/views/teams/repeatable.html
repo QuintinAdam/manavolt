@@ -1,4 +1,4 @@
-<h2>{{ _repeatables.size }} Repeatable</h2>
+<h2>{{ _repeatables.size }} Repeatable Task{{ if _repeatables.size > 1 }}s{{ end }}</h2>
 <form e-submit="add_repeatable" role="form">
   <div class="form-group">
      <input class="form-control" type="text" value="{{ page._repeatable_name }}" placeholder="New Repeatable Task" >

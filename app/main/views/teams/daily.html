@@ -1,4 +1,4 @@
-<h2>{{ _dailys.size }} Daily</h2>
+<h2>{{ _dailys.size }} Daily Task{{ if _dailys.size > 1 }}s{{ end }}</h2>
 <form e-submit="add_daily" role="form">
   <div class="form-group">
      <input class="form-control" type="text" value="{{ page._daily_name }}" placeholder="New Daily Task" >

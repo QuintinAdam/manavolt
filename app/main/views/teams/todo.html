@@ -1,7 +1,7 @@
-<h2>{{ to_do_incomplete_count}} ToDo</h2>
+<h2>{{ to_do_incomplete_count}} ToDo Task{{ if to_do_incomplete_count > 1 }}s{{ end }}</h2>
 <form e-submit="add_todo" role="form">
   <div class="form-group">
-     <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New ToDo Task" >
+     <input class="form-control" type="text" value="{{ page._todo_name }}" placeholder="New Todo Task" >
   </div>
 </form>
 
