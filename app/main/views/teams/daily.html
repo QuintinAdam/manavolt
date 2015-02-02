@@ -39,20 +39,32 @@
             <h5>Name:</h5>
             <form role="form">
               <div class="form-group">
-                 <input class="form-control" type="text" value="{{ page._task_name }}" placeholder="New Daily Task" >
+                 <input class="form-control {{ daily.score_class_name }}" type="text" value="{{ page._task_name }}" placeholder="New Daily Task" >
               </div>
             </form>
           </div>
 
           <div class="task-difficulty">
             <h5>Difficulty:</h5>
-            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 1) }}" e-click="set_daily_difficulty(daily, 1)">Easy</button>
-            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 2) }}" e-click="set_daily_difficulty(daily, 2)">Medium</button>
-            <button class="btn btn-default {{ 'active' if current_difficulty(daily, 3) }}" e-click="set_daily_difficulty(daily, 3)">Hard</button>
+            <button
+              class="btn btn-default {{ 'active' if current_difficulty(daily, 1) }} {{ daily.score_class_name }}"
+              e-click="set_daily_difficulty(daily, 1)">
+              Easy
+            </button>
+            <button
+              class="btn btn-default {{ 'active' if current_difficulty(daily, 2) }} {{ daily.score_class_name }}"
+              e-click="set_daily_difficulty(daily, 2)">
+              Medium
+            </button>
+            <button
+              class="btn btn-default {{ 'active' if current_difficulty(daily, 3) }} {{ daily.score_class_name }}"
+              e-click="set_daily_difficulty(daily, 3)">
+              Hard
+            </button>
           </div>
 
           <div class="text-center task-save">
-            <button class="btn btn-default" e-click="save_daily(daily)">Save &amp; Close</button>
+            <button class="btn btn-default active {{ daily.score_class_name }}" e-click="save_daily(daily)">Save &amp; Close</button>
           </div>
 
         </div>

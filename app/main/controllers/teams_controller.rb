@@ -14,6 +14,7 @@ class TeamsController < Volt::ModelController
           daily.editing = false
         end
       end
+
     end
   end
 
