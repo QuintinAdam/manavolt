@@ -9,6 +9,7 @@
   {{ _repeatables.each do |repeat| }}
     <li class='task-item repeatable {{ set_score_class_name(repeat) }} {{ repeat.score_class_name }}'>
       <div class='task-options'>
+        <!-- <span e-click="push_to_repeat_top(repeat)" class="glyphicon glyphicon-open"></span> -->
         <span e-click="remove_repeat(repeat)" class='glyphicon glyphicon-remove'></span>
       </div>
       <div class='task-controls'>

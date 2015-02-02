@@ -1,6 +1,18 @@
 // Place your apps css here
+
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
   outline: none;
+}
+
+.home-page-title{
+  padding: 100px 0 200px 0;
+  .so-big{
+    font-size: 200px;
+  }
+}
+
+.glyphicon-flash{
+  color: gold;
 }
 
 

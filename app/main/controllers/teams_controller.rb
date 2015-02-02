@@ -103,6 +103,12 @@ class TeamsController < Volt::ModelController
     remove_health(3)
   end
 
+  # this totally does not work... ='(
+  # def push_to_repeat_top(repeat)
+  #   _repeatables.delete(repeat)
+  #   _repeatables.insert(0, repeat) # can't use unshift
+  # end
+
 
   #### Daily
 
