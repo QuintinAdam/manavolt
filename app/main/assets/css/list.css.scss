@@ -211,6 +211,30 @@
           }
         }
       }
+      .completed-task{
+        background-color: #d9d9d9 !important;
+        color: #989898;
+        input {
+          background: #fff;
+          border-color: darken(#d9d9d9, 35%) !important;
+        }
+        button.btn.btn-default {
+          border-color: darken(#d9d9d9, 35%) !important;
+          background-color: #d9d9d9 !important;
+          &.active{
+            background-color: darken(#d9d9d9, 10%) !important;
+            &:hover {
+              background-color: darken(#d9d9d9, 15%) !important;
+            }
+          }
+          &:hover {
+            background-color: #989898 !important;
+          }
+        }
+        .task-actions,.task-checker{
+          background-color: #989898 !important;
+        }
+      }
     }
   }
 }
