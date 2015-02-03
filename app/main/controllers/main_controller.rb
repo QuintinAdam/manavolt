@@ -20,3 +20,18 @@ class MainController < Volt::ModelController
     url.path.split('/')[1] == attrs.href.split('/')[1]
   end
 end
+  # def flash_notice
+  #   flash._notices << 'A notice message'
+  # end
+
+  # def flash_success
+  #   flash._successes << 'A success message'
+  # end
+
+  # def flash_warning
+  #   flash._warnings << 'A warning message'
+  # end
+
+  # def flash_error
+  #   flash._errors << 'An error message'
+  # end

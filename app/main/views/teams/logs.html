@@ -1,0 +1,24 @@
+<h2>Event Logs</h2>
+
+<ul class='task-col event-log-list log-list'>
+  {{ _event_logs.each do |log| }}
+    <li class='event-log-item {{ "current_user" if Volt.user.__id == log.user_id }} {{ log.alert_status }}'>
+      {{ if Volt.user.__id == log.user_id }}
+        <div class='event-log-options'>
+          <span e-click="remove_event_log(log)" class='glyphicon glyphicon-remove'></span>
+        </div>
+      {{ end }}
+
+      <div class='event-log-text'>
+        <h4 class='user-name'><small>{{ log.user_name }} - {{ time_ago_in_words(Time.now.to_i, log.created_at.to_i) }} ago</small></h4>
+        <p>{{ log.text }}</p>
+      </div>
+    </li>
+  {{ end }}
+</ul>
+
+<form e-submit="add_event_log" role="form">
+  <div class="form-group">
+     <input class="form-control" type="text" value="{{ page._event_log_text }}" placeholder="Enter Message" >
+  </div>
+</form>

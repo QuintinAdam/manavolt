@@ -13,7 +13,9 @@
       <h3 class="text-muted">Mana<span class="glyphicon glyphicon-flash"></span>Volt</h3>
     </div>
 
-    <:volt:notices />
+    <div id="notice-alert-override" class="pull-right">
+      <:volt:notices />
+    </div>
 
     {{ template main_path, 'body', {controller_group: 'main'} }}
 

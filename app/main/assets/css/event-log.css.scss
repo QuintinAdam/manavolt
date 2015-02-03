@@ -1,0 +1,50 @@
+$brand-primary: darken(#428bca, 6.5%);
+$brand-success: #5cb85c;
+$brand-info: #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9534f;
+.logs{
+  .logs-area{
+    ul.log-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: white;
+      border: 1px solid lightgray;
+      margin-bottom: 10px;
+      max-height: 350px;
+      li.event-log-item{
+        position: relative;
+        &:hover{
+          .event-log-options{
+            opacity: 1;
+          }
+        }
+        .event-log-options{
+          float: right;
+          margin: 4px 7px 0 7px;
+          opacity: .25;
+          span.glyphicon{
+            cursor: pointer;
+          }
+        }
+        .event-log-text{
+          padding: 0 0 5px 15px;
+          line-height: 1px;
+        }
+      }
+      li.success{
+        color: $brand-success;
+      }
+      li.info{
+        color: $brand-info;
+      }
+      li.danger{
+        color: $brand-danger;
+      }
+      li.warning{
+        color: $brand-warning;
+      }
+    }
+  }
+}

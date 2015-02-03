@@ -84,23 +84,27 @@ class TeamsController < Volt::ModelController
   #### Repeatable
 
   def add_repeatable
-    _repeatables << {name: page._repeatable_name, team_id: self.model.__id, score: 0, difficulty: 1}
+    _repeatables << {name: page._repeatable_name, team_id: self.model.__id, score: 0, difficulty: 1, completed: false}
+    add_event_log('Added repeatable: ' + page._repeatable_name, 'info')
     page._repeatable_name = ''
   end
 
   def remove_repeat(repeat)
+    add_event_log('Removed repeatable: ' + repeat.name, 'danger')
     _repeatables.delete(repeat)
   end
 
   def did_positive_task(repeat)
+    add_event_log('#winning. Task completed: ' + repeat.name, 'success')
     repeat.score += 1
     add_experience(level_modifier)
-    add_mana(5)
+    add_mana(5 * repeat.difficulty)
   end
 
   def did_negative_task(repeat)
+    add_event_log('Sucked at life. Task Failed: ' + repeat.name, 'warning')
     repeat.score -= 1
-    remove_health(3)
+    remove_health(3 * repeat.difficulty)
   end
 
   # this totally does not work... ='(
@@ -113,18 +117,21 @@ class TeamsController < Volt::ModelController
   #### Daily
 
   def add_daily
-    _dailys << {name: page._daily_name, team_id: self.model.__id, difficulty: 1, editing: false, score: 0, streak: 0}
+    _dailys << {name: page._daily_name, team_id: self.model.__id, difficulty: 1, editing: false, score: 0, streak: 0, completed: false}
+    add_event_log('Added daily: ' + page._daily_name, 'info')
     page._daily_name = ''
   end
 
   def remove_daily(daily)
+    add_event_log('Removed daily: ' + daily.name, 'danger')
     _dailys.delete(daily)
   end
 
   def daliy_completed(daily)
+    add_event_log('Completed daily: ' + daily.name, 'success')
     daily.completed = true
     add_experience(level_modifier)
-    add_mana(5)
+    add_mana(5 * daily.difficulty)
   end
 
   # experience and mana gain based on difficulty
@@ -132,9 +139,10 @@ class TeamsController < Volt::ModelController
   # end
 
   def daliy_uncompleted(daily)
+    add_event_log('Uncompleted daily: ' + daily.name, 'warning')
     daily.completed = false
     remove_experience(level_modifier)
-    remove_mana(5)
+    remove_mana(5 * daily.difficulty)
   end
 
   def editing_daily(daily)
@@ -162,22 +170,28 @@ class TeamsController < Volt::ModelController
   #### Todo
 
   def add_todo
-    _todos << {name: page._todo_name, team_id: self.model.__id, score: 0, difficulty: 1}
+    _todos << {name: page._todo_name, team_id: self.model.__id, score: 0, difficulty: 1, completed: false}
+    add_event_log('Added a new todo: ' + page._todo_name, 'info')
     page._todo_name = ''
   end
 
   def remove_todo(todo)
+    add_event_log('Deleted todo: ' + todo.name, 'danger')
     _todos.delete(todo)
   end
 
   def todo_completed(todo)
+    add_event_log('Completed todo: ' + todo.name, 'success')
     todo.completed = true
     add_experience(level_modifier)
-    add_mana(5)
+    add_mana(5 * todo.difficulty)
   end
 
   def todo_uncompleted(todo)
+    add_event_log('Uncompleted todo: ' + todo.name, 'warning')
     todo.completed = false
+    remove_experience(level_modifier)
+    remove_mana(5 * todo.difficulty)
   end
 
   def todo_completed_count
@@ -257,6 +271,7 @@ class TeamsController < Volt::ModelController
     self.model._level += 1
     self.model._health = 50
     self.model._experience = remainder.or(0)
+    add_event_log('Good job kitty cat! You are now level ' + self.model._level.to_s + '!!!', 'success')
   end
 
   def death_from_above
@@ -264,6 +279,46 @@ class TeamsController < Volt::ModelController
     self.model._health = 50
     self.model._experience = 0
     self.model._mana = 0
+    add_event_log('Back to level 1! ❨╯°□°❩╯︵┻━┻!!!!! ', 'success')
   end
 
+### event log
+  def add_event_log(text = nil, status = 'default')
+    _event_logs << {text: text.or(page._event_log_text), team_id: self.model.__id, user_id: Volt.user.__id, user_name: Volt.user._name, created_at: Time.now.to_i, alert_status: status}
+    page._event_log_text = ''
+    if _event_logs.size >= 11
+      remove_event_log(_event_logs.first)
+    end
+  end
+
+  def remove_event_log(log)
+    _event_logs.delete(log)
+  end
+
+  def time_ago_in_words(t1, t2)
+    s = t1.to_i - t2.to_i # distance between t1 and t2 in seconds
+
+    resolution = if s > 29030400 # seconds in a year
+      [(s/29030400).to_i, 'years']
+    elsif s > 2419200
+      [(s/2419200).to_i, 'months']
+    elsif s > 604800
+      [(s/604800).to_i, 'weeks']
+    elsif s > 86400
+      [(s/86400).to_i, 'days']
+    elsif s > 3600 # seconds in an hour
+      [(s/3600).to_i, 'hours']
+    elsif s > 60
+      [(s/60).to_i, 'minutes']
+    else
+      [s, 'seconds']
+    end
+
+    # singular v. plural resolution
+    if resolution[0] == 1
+      resolution.join(' ')[0...-1]
+    else
+      resolution.join(' ')
+    end
+  end
 end

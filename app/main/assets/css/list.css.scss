@@ -1,7 +1,7 @@
-.lists{
+.lists,.logs{
   padding: 0 10px;
   margin-bottom: 15px;
-  .task-col{
+  .task-col,.logs-area{
     background: #f2f5f6;
     border: 1px solid #c3d1d6;
     padding: 15px;
@@ -36,7 +36,7 @@
           padding: 10px 0 10px 52px;
         }
       }
-            .much-fail-you-have {
+      .much-fail-you-have {
         background-color: #E7B8B1;
         input {
           background: #fff;

@@ -4,7 +4,6 @@
   {{ end }}
 
 <:Body>
-
   <:dashboard model="{{ self.model }}"/>
 
   <div class="dashboard-spacer">
@@ -23,6 +22,20 @@
       <div class='lists col-sm-12 col-md-6 col-lg-4'>
         <div class="task-col todo" >
           <:todo model="{{ self.model }}" />
+        </div>
+      </div>
+
+    </div>
+    <div class='row'>
+      <div class='logs col-sm-12 col-md-6'>
+        <div class="logs-area">
+          <:logs model="{{ self.model }}" />
+        </div>
+      </div>
+
+      <div class ='lists rewards col-sm-12 col-md-6'>
+        <div class='task-col rewards-area'>
+          <:rewards model="{{ self.model }}" />
         </div>
       </div>
 

@@ -7,7 +7,7 @@
 
 <ul class='task-list daily-list'>
   {{ _dailys.each do |daily| }}
-    <li class='task-item {{ set_score_class_name(daily) }} {{ daily.score_class_name }} {{ "completed-task" if daily.completed }} '>
+    <li class='task-item {{ set_score_class_name(daily) }} {{ daily.score_class_name }} {{ "completed-task" if daily.completed == true }} '>
 
       <div class='task-options'>
         <span e-click="editing_daily(daily)" class="glyphicon glyphicon-pencil"></span>
