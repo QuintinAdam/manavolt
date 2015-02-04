@@ -14,7 +14,6 @@ class TeamsController < Volt::ModelController
           daily.editing = false
         end
       end
-
     end
   end
 
@@ -97,7 +96,7 @@ class TeamsController < Volt::ModelController
   def did_positive_task(repeat)
     add_event_log('#winning. Task completed: ' + repeat.name, 'success')
     repeat.score += 1
-    add_experience(level_modifier)
+    add_experience(level_modifier * repeat.difficulty )
     add_mana(5 * repeat.difficulty)
   end
 
@@ -130,7 +129,7 @@ class TeamsController < Volt::ModelController
   def daliy_completed(daily)
     add_event_log('Completed daily: ' + daily.name, 'success')
     daily.completed = true
-    add_experience(level_modifier)
+    add_experience(level_modifier * daily.difficulty )
     add_mana(5 * daily.difficulty)
   end
 
@@ -183,7 +182,7 @@ class TeamsController < Volt::ModelController
   def todo_completed(todo)
     add_event_log('Completed todo: ' + todo.name, 'success')
     todo.completed = true
-    add_experience(level_modifier)
+    add_experience(level_modifier * todo.difficulty )
     add_mana(5 * todo.difficulty)
   end
 
@@ -279,7 +278,7 @@ class TeamsController < Volt::ModelController
     self.model._health = 50
     self.model._experience = 0
     self.model._mana = 0
-    add_event_log('Back to level 1! ❨╯°□°❩╯︵┻━┻!!!!! ', 'success')
+    add_event_log('Back to level 1! ❨╯°□°❩╯︵┻━┻!!!!! ', 'danger')
   end
 
 ### event log
